@@ -28,6 +28,7 @@ import { ExploreContainerComponent } from '../explore-container/explore-containe
 import { addIcons } from 'ionicons';
 import { archiveOutline, trashOutline, checkmarkDone } from 'ionicons/icons';
 import { ItemReorderEventDetail } from '@ionic/angular';
+import { MenuComponent } from '../menu/menu.component';
 
 @Component({
   selector: 'app-to-do',
@@ -59,9 +60,12 @@ import { ItemReorderEventDetail } from '@ionic/angular';
     IonFab,
     IonFabButton,
     IonFabList,
+    MenuComponent,
   ],
 })
 export class ToDoPage {
+  showEdit: boolean = false;
+
   constructor() {
     addIcons({
       archiveOutline,
@@ -76,4 +80,10 @@ export class ToDoPage {
     // by the reorder group
     ev.detail.complete();
   }
+
+  setShowEdit(): void {
+    this.showEdit = !this.showEdit;
+  }
+
+  protected readonly getComputedStyle = getComputedStyle;
 }

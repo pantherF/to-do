@@ -9,6 +9,7 @@ import {
   IonLabel,
 } from '@ionic/angular/standalone';
 import { ExploreContainerComponent } from '../explore-container/explore-container.component';
+import { MenuComponent } from '../menu/menu.component';
 
 @Component({
   selector: 'app-settings',
@@ -24,6 +25,7 @@ import { ExploreContainerComponent } from '../explore-container/explore-containe
     IonList,
     IonItem,
     IonLabel,
+    MenuComponent,
   ],
 })
 export class SettingsPage {

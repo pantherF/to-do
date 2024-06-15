@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import {
   IonFab,
   IonFabButton,
@@ -13,7 +13,16 @@ import {
   menu,
   pencil,
 } from 'ionicons/icons';
-import { RouterLink, NavigationEnd, Router } from '@angular/router';
+import {
+  RouterLink,
+  NavigationEnd,
+  Router,
+  RouteConfigLoadEnd,
+  ResolveEnd,
+  ActivationEnd,
+  GuardsCheckEnd,
+  NavigationStart,
+} from '@angular/router';
 
 @Component({
   selector: 'app-menu',
@@ -22,27 +31,17 @@ import { RouterLink, NavigationEnd, Router } from '@angular/router';
   standalone: true,
   imports: [IonFab, IonFabButton, IonFabList, IonIcon, RouterLink],
 })
-export class MenuComponent implements OnInit {
-  showEdit: boolean = false;
+export class MenuComponent {
+  @Input() showEdit: boolean = false;
+  @Input() callbackFunction?: void;
 
-  constructor(private router: Router) {
+  constructor() {
     addIcons({
       settingsOutline,
       addOutline,
       homeOutline,
       menu,
       pencil,
-    });
-  }
-
-  ngOnInit() {
-    this.router.events.subscribe((event) => {
-      if (event instanceof NavigationEnd && event.url === '/to-do') {
-        console.log(event.url);
-        this.showEdit = true;
-      } else {
-        this.showEdit = false;
-      }
     });
   }
 }
