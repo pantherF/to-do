@@ -2,7 +2,20 @@ import { Routes } from '@angular/router';
 
 export const routes: Routes = [
   {
+    path: 'to-do',
+    loadComponent: () =>
+      import('../app/to-do/to-do-page.component').then((m) => m.ToDoPage),
+  },
+  {
+    path: 'settings',
+    loadComponent: () =>
+      import('../app/settings/settings-page.component').then(
+        (m) => m.SettingsPage,
+      ),
+  },
+  {
     path: '',
-    loadChildren: () => import('./tabs/tabs.routes').then((m) => m.routes),
+    redirectTo: '/to-do',
+    pathMatch: 'full',
   },
 ];
