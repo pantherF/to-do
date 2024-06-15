@@ -1,0 +1,25 @@
+<ion-fab slot="fixed" vertical="bottom" horizontal="end">
+  <ion-fab-button color="light">
+    <ion-icon name="menu"/>
+  </ion-fab-button>
+  <!--  Different on each page -->
+  @if (showEdit) {
+    <ion-fab-list side="top">
+      <ion-fab-button type="button" aria-label="add to-do">
+        <ion-icon color="dark" name="add-outline"/>
+      </ion-fab-button>
+      <ion-fab-button type="button" aria-label="add to-do">
+        <ion-icon size="small" color="dark" name="pencil"/>
+      </ion-fab-button>
+    </ion-fab-list>
+  }
+  <!--  Navigation -->
+  <ion-fab-list side="start">
+    <ion-fab-button type="button" aria-label="to-do list" [routerLink]="'/to-do'">
+      <ion-icon color="dark" name="home-outline"/>
+    </ion-fab-button>
+    <ion-fab-button type="button" aria-label="settings" [routerLink]="'/settings'">
+      <ion-icon color="dark" name="settings-outline"/>
+    </ion-fab-button>
+  </ion-fab-list>
+</ion-fab>
