@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import {
   IonHeader,
   IonToolbar,
@@ -6,29 +6,25 @@ import {
   IonContent,
   IonItem,
   IonList,
-  IonLabel,
-  IonItemSliding,
-  IonItemOptions,
-  IonItemOption,
   IonIcon,
   IonCheckbox,
-  IonInput,
   IonButton,
-  IonGrid,
-  IonRow,
-  IonCol,
   IonReorderGroup,
   IonButtons,
   IonReorder,
-  IonFab,
-  IonFabButton,
-  IonFabList,
+  IonModal,
+  IonInput,
 } from '@ionic/angular/standalone';
-import { ExploreContainerComponent } from '../explore-container/explore-container.component';
 import { addIcons } from 'ionicons';
-import { archiveOutline, trashOutline, checkmarkDone } from 'ionicons/icons';
+import {
+  archiveOutline,
+  trashOutline,
+  close,
+  createOutline,
+} from 'ionicons/icons';
 import { ItemReorderEventDetail } from '@ionic/angular';
 import { MenuComponent } from '../menu/menu.component';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-to-do',
@@ -40,27 +36,18 @@ import { MenuComponent } from '../menu/menu.component';
     IonToolbar,
     IonTitle,
     IonContent,
-    ExploreContainerComponent,
     IonItem,
     IonList,
-    IonLabel,
-    IonItemSliding,
-    IonItemOptions,
-    IonItemOption,
     IonIcon,
     IonCheckbox,
-    IonInput,
     IonButton,
-    IonGrid,
-    IonRow,
-    IonCol,
     IonReorderGroup,
     IonReorder,
     IonButtons,
-    IonFab,
-    IonFabButton,
-    IonFabList,
     MenuComponent,
+    IonModal,
+    IonInput,
+    FormsModule,
   ],
 })
 export class ToDoPage {
@@ -70,7 +57,8 @@ export class ToDoPage {
     addIcons({
       archiveOutline,
       trashOutline,
-      checkmarkDone,
+      close,
+      createOutline,
     });
   }
 
@@ -81,9 +69,21 @@ export class ToDoPage {
     ev.detail.complete();
   }
 
-  setShowEdit(): void {
-    this.showEdit = !this.showEdit;
+  setShowEdit($event: boolean) {
+    if (this.showEdit && !$event) {
+      this.showEdit = false;
+    } else if (!this.showEdit && $event) {
+      this.showEdit = true;
+    } else if (this.showEdit && $event) {
+      this.showEdit = false;
+    } else if (!this.showEdit && !$event) {
+      this.showEdit = true;
+    }
   }
 
-  protected readonly getComputedStyle = getComputedStyle;
+  isModalOpen = false;
+
+  setCreateModalOpen($isOpen: boolean) {
+    this.isModalOpen = $isOpen;
+  }
 }

@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import {
   IonFab,
   IonFabButton,
@@ -13,16 +13,7 @@ import {
   menu,
   pencil,
 } from 'ionicons/icons';
-import {
-  RouterLink,
-  NavigationEnd,
-  Router,
-  RouteConfigLoadEnd,
-  ResolveEnd,
-  ActivationEnd,
-  GuardsCheckEnd,
-  NavigationStart,
-} from '@angular/router';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-menu',
@@ -32,8 +23,11 @@ import {
   imports: [IonFab, IonFabButton, IonFabList, IonIcon, RouterLink],
 })
 export class MenuComponent {
-  @Input() showEdit: boolean = false;
-  @Input() callbackFunction?: void;
+  showEdit: boolean = false;
+
+  @Input() showEditMenu: boolean = false;
+  @Output() editViewShow = new EventEmitter<boolean>();
+  @Output() createViewShow = new EventEmitter<boolean>();
 
   constructor() {
     addIcons({
@@ -43,5 +37,14 @@ export class MenuComponent {
       menu,
       pencil,
     });
+  }
+
+  returnCreateView() {
+    this.createViewShow.emit(true);
+  }
+
+  returnEditView() {
+    this.showEdit = !this.showEdit;
+    this.editViewShow.emit(this.showEdit);
   }
 }

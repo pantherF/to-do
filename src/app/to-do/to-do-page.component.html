@@ -1,14 +1,20 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>Item list</ion-title>
-    <ion-buttons slot="start">
-      <ion-button disabled>
-        <ion-icon slot="start" size="large" name="checkmark-done"/>
-      </ion-button>
-    </ion-buttons>
+    @if (!showEdit) {
+      <ion-title>Item list</ion-title>
+    }
 
     @if (showEdit) {
-      <ion-buttons>
+
+      <ion-checkbox id="select-checkbox-toolbar" labelPlacement="end" justify="end">
+        All
+      </ion-checkbox>
+
+      <ion-buttons id="edit-options-toolbar" slot="end">
+
+        <ion-button>
+          <ion-icon slot="icon-only" name="create-outline"></ion-icon>
+        </ion-button>
 
         <ion-button color="dark">
           <ion-icon slot="icon-only" name="archive-outline"></ion-icon>
@@ -16,6 +22,10 @@
 
         <ion-button color="dark">
           <ion-icon slot="icon-only" name="trash-outline"></ion-icon>
+        </ion-button>
+
+        <ion-button color="dark" (click)="setShowEdit(false)">
+          <ion-icon slot="icon-only" name="close"></ion-icon>
         </ion-button>
 
       </ion-buttons>
@@ -48,7 +58,27 @@
     </ion-reorder-group>
 
   </ion-list>
-  <app-menu [showEdit]="true"/>
+  <app-menu [showEditMenu]="true" (editViewShow)="setShowEdit($event)" (createViewShow)="setCreateModalOpen($event)"/>
+
+  <ion-modal [isOpen]="isModalOpen">
+    <ng-template>
+      <ion-header>
+        <ion-toolbar>
+          <ion-title>Modal</ion-title>
+          <ion-buttons slot="end">
+            <ion-button (click)="setCreateModalOpen(false)">Close</ion-button>
+          </ion-buttons>
+        </ion-toolbar>
+      </ion-header>
+      <ion-content class="ion-padding">
+        <p>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Magni illum quidem recusandae ducimus quos
+          reprehenderit. Veniam, molestias quos, dolorum consequuntur nisi deserunt omnis id illo sit cum qui. Eaque,
+          dicta.
+        </p>
+      </ion-content>
+    </ng-template>
+  </ion-modal>
 
 </ion-content>
 

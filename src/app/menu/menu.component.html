@@ -3,12 +3,12 @@
     <ion-icon name="menu"/>
   </ion-fab-button>
   <!--  Different on each page -->
-  @if (showEdit) {
+  @if (showEditMenu) {
     <ion-fab-list side="top">
-      <ion-fab-button type="button" aria-label="add to-do">
+      <ion-fab-button type="button" aria-label="add to-do" (click)="returnCreateView()">
         <ion-icon color="dark" name="add-outline"/>
       </ion-fab-button>
-      <ion-fab-button type="button" aria-label="add to-do">
+      <ion-fab-button type="button" aria-label="add to-do" (click)="returnEditView()">
         <ion-icon size="small" color="dark" name="pencil"/>
       </ion-fab-button>
     </ion-fab-list>

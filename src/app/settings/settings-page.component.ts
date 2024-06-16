@@ -8,7 +8,6 @@ import {
   IonItem,
   IonLabel,
 } from '@ionic/angular/standalone';
-import { ExploreContainerComponent } from '../explore-container/explore-container.component';
 import { MenuComponent } from '../menu/menu.component';
 
 @Component({
@@ -21,7 +20,6 @@ import { MenuComponent } from '../menu/menu.component';
     IonToolbar,
     IonTitle,
     IonContent,
-    ExploreContainerComponent,
     IonList,
     IonItem,
     IonLabel,
