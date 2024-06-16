@@ -61,23 +61,36 @@
   <app-menu [showEditMenu]="true" (editViewShow)="setShowEdit($event)" (createViewShow)="setCreateModalOpen($event)"/>
 
   <ion-modal [isOpen]="isModalOpen">
+
     <ng-template>
+
       <ion-header>
         <ion-toolbar>
-          <ion-title>Modal</ion-title>
+          <ion-title>Create item</ion-title>
           <ion-buttons slot="end">
-            <ion-button (click)="setCreateModalOpen(false)">Close</ion-button>
+            <ion-button (click)="setCreateModalOpen(false)">
+              <ion-icon slot="icon-only" name="close"></ion-icon>
+            </ion-button>
           </ion-buttons>
         </ion-toolbar>
       </ion-header>
+
       <ion-content class="ion-padding">
-        <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Magni illum quidem recusandae ducimus quos
-          reprehenderit. Veniam, molestias quos, dolorum consequuntur nisi deserunt omnis id illo sit cum qui. Eaque,
-          dicta.
-        </p>
+        <app-create-item/>
       </ion-content>
+
+      <ion-footer>
+        <ion-toolbar>
+          <ion-buttons slot="end">
+            <ion-button>
+              Create
+            </ion-button>
+          </ion-buttons>
+        </ion-toolbar>
+      </ion-footer>
+
     </ng-template>
+
   </ion-modal>
 
 </ion-content>

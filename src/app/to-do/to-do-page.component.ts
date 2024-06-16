@@ -14,6 +14,7 @@ import {
   IonReorder,
   IonModal,
   IonInput,
+  IonFooter,
 } from '@ionic/angular/standalone';
 import { addIcons } from 'ionicons';
 import {
@@ -25,6 +26,7 @@ import {
 import { ItemReorderEventDetail } from '@ionic/angular';
 import { MenuComponent } from '../menu/menu.component';
 import { FormsModule } from '@angular/forms';
+import { CreateItemComponent } from '../create-item/create-item.component';
 
 @Component({
   selector: 'app-to-do',
@@ -48,6 +50,8 @@ import { FormsModule } from '@angular/forms';
     IonModal,
     IonInput,
     FormsModule,
+    IonFooter,
+    CreateItemComponent,
   ],
 })
 export class ToDoPage {

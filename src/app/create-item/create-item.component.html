@@ -1,3 +1,65 @@
-<p>
-  create-item works!
-</p>
+<ion-input
+  label="Title *"
+  labelPlacement="floating"
+  fill="outline"
+  [counter]="true"
+  maxlength="20"
+  required
+>
+</ion-input>
+
+<ion-textarea
+  label="Description"
+  labelPlacement="floating"
+  fill="outline"
+  [counter]="true"
+  [autoGrow]="true"
+  maxlength="300"
+>
+</ion-textarea>
+
+<ion-input
+  label="Tag"
+  labelPlacement="floating"
+  fill="outline"
+  [counter]="true"
+  maxlength="20"
+  required
+>
+</ion-input>
+
+<ion-chip>
+  <ion-label>Cats</ion-label>
+  <ion-icon name="close"></ion-icon>
+</ion-chip>
+<ion-chip>
+  <ion-label>Exercise</ion-label>
+  <ion-icon name="close"></ion-icon>
+</ion-chip>
+
+<ion-datetime-button datetime="datetime"></ion-datetime-button>
+
+<ion-modal [keepContentsMounted]="true">
+  <ng-template>
+    <ion-datetime
+      id="datetime"
+      [(ngModel)]="datetime"
+      [formatOptions]="{
+      time: { hour: '2-digit', minute: '2-digit' },
+      date: { day: '2-digit', month: 'long' },
+    }"
+    ></ion-datetime>
+  </ng-template>
+</ion-modal>
+
+<!--<ion-select aria-label="Fruit" placeholder="Label" [multiple]="true">-->
+<!--  <ion-select-option value="cats">Cats</ion-select-option>-->
+<!--  <ion-select-option value="plants">Plants</ion-select-option>-->
+<!--  <ion-select-option value="programming">Programming</ion-select-option>-->
+<!--  <ion-select-option value="fitness">Fitness</ion-select-option>-->
+<!--  <ion-select-option value="school">School</ion-select-option>-->
+<!--  <ion-select-option value="gifts">Gifts</ion-select-option>-->
+<!--  <ion-select-option value="her">Her</ion-select-option>-->
+<!--  <ion-select-option value="family">Family</ion-select-option>-->
+<!--</ion-select>-->
+
