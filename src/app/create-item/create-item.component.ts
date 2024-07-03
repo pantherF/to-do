@@ -1,22 +1,20 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {
   IonButton,
   IonButtons,
   IonChip,
   IonDatetime,
-  IonDatetimeButton,
+  IonDatetimeButton, IonFabButton,
   IonIcon,
   IonInput,
   IonItem,
   IonLabel,
   IonModal,
-  IonPopover,
   IonTextarea,
 } from '@ionic/angular/standalone';
-import { addIcons } from 'ionicons';
-import { close } from 'ionicons/icons';
-import { FormsModule } from '@angular/forms';
-import { DatePipe } from '@angular/common';
+import {addIcons} from 'ionicons';
+import {close, notificationsOutline} from 'ionicons/icons';
+import {FormsModule} from '@angular/forms';
 
 @Component({
   selector: 'app-create-item',
@@ -36,40 +34,39 @@ import { DatePipe } from '@angular/common';
     IonItem,
     IonButtons,
     IonButton,
+    IonFabButton,
   ],
 })
 export class CreateItemComponent implements OnInit {
   title: string = 'Create Item';
+  showTimePicker: boolean = false;
+
+  mockTagData = ['exercise', 'health',];
+  tagString = '';
 
   constructor() {
     addIcons({
       close,
+      notificationsOutline
     });
   }
-  datePickerShown = false;
 
-  showDatePicker(show: boolean) {
-    this.datePickerShown = show;
-  }
   public datetime: string = '';
 
   ngOnInit() {
     const date = new Date();
-
-    // Set the value of the datetime to 2 days
-    // before the current day
-    let dayChange = -2;
-
-    // If the day we are going to set the value to
-    // is in the previous month then set the day 2 days
-    // later instead so it remains in the same month
-    if (date.getDate() + dayChange <= 0) {
-      dayChange = -dayChange;
-    }
-
-    // Set the value of the datetime to the day
-    // calculated above
-    date.setDate(date.getDate() + dayChange);
     this.datetime = date.toISOString();
+  }
+
+  openTimeSetter() {
+    this.showTimePicker = !this.showTimePicker;
+  }
+
+  addTag(tag: string) {
+    console.log(tag);
+  }
+
+  removeTag(tag: string) {
+    console.log(tag);
   }
 }

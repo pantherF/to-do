@@ -2,9 +2,10 @@
   label="Title *"
   labelPlacement="floating"
   fill="outline"
-  [counter]="true"
   maxlength="20"
-  required
+  required="true"
+  class="ion-margin-bottom"
+  [counter]="true"
 >
 </ion-input>
 
@@ -12,9 +13,11 @@
   label="Description"
   labelPlacement="floating"
   fill="outline"
+  maxlength="300"
+  class="ion-margin-bottom"
   [counter]="true"
   [autoGrow]="true"
-  maxlength="300"
+  [(ngModel)]="tagString"
 >
 </ion-textarea>
 
@@ -22,44 +25,60 @@
   label="Tag"
   labelPlacement="floating"
   fill="outline"
-  [counter]="true"
   maxlength="20"
-  required
+  class="ion-margin-bottom"
+  [counter]="true"
 >
 </ion-input>
 
-<ion-chip>
-  <ion-label>Cats</ion-label>
-  <ion-icon name="close"></ion-icon>
-</ion-chip>
-<ion-chip>
-  <ion-label>Exercise</ion-label>
-  <ion-icon name="close"></ion-icon>
-</ion-chip>
+@for (tag of mockTagData; track tag) {
+  <ion-chip
+    (click)="removeTag(tag)"
+  >
+    <ion-label>{{ tag }}</ion-label>
+    <ion-icon
+      name="close"
+    />
+  </ion-chip>
+}
 
-<ion-datetime-button datetime="datetime"></ion-datetime-button>
+<ion-buttons class="ion-margin-top">
+  <ion-button
+    type="button"
+    aria-label="to-do list"
+    shape="round"
+    size="large"
+    color="dark"
+    class="ion-margin-end"
+    (click)="openTimeSetter()"
+  >
+    <ion-icon
+      slot="icon-only"
+      name="notifications-outline"
+    />
+  </ion-button>
 
-<ion-modal [keepContentsMounted]="true">
-  <ng-template>
-    <ion-datetime
-      id="datetime"
-      [(ngModel)]="datetime"
-      [formatOptions]="{
-      time: { hour: '2-digit', minute: '2-digit' },
-      date: { day: '2-digit', month: 'long' },
-    }"
-    ></ion-datetime>
-  </ng-template>
-</ion-modal>
+  @if (this.showTimePicker) {
+    <ion-buttons>
+      <ion-datetime-button
+        class="ion-margin-start"
+        datetime="datetime"
+      />
+    </ion-buttons>
 
-<!--<ion-select aria-label="Fruit" placeholder="Label" [multiple]="true">-->
-<!--  <ion-select-option value="cats">Cats</ion-select-option>-->
-<!--  <ion-select-option value="plants">Plants</ion-select-option>-->
-<!--  <ion-select-option value="programming">Programming</ion-select-option>-->
-<!--  <ion-select-option value="fitness">Fitness</ion-select-option>-->
-<!--  <ion-select-option value="school">School</ion-select-option>-->
-<!--  <ion-select-option value="gifts">Gifts</ion-select-option>-->
-<!--  <ion-select-option value="her">Her</ion-select-option>-->
-<!--  <ion-select-option value="family">Family</ion-select-option>-->
-<!--</ion-select>-->
-
+    <ion-modal [keepContentsMounted]="true">
+      <ng-template>
+        <ion-datetime
+          color="dark"
+          id="datetime"
+          [(ngModel)]="datetime"
+          [formatOptions]=
+            "{
+              time: { hour: '2-digit', minute: '2-digit' },
+              date: { day: '2-digit', month: 'long' },
+            }"
+        ></ion-datetime>
+      </ng-template>
+    </ion-modal>
+  }
+</ion-buttons>
