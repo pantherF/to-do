@@ -1,11 +1,11 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {
   IonFab,
   IonFabButton,
   IonFabList,
   IonIcon,
 } from '@ionic/angular/standalone';
-import { addIcons } from 'ionicons';
+import {addIcons} from 'ionicons';
 import {
   settingsOutline,
   addOutline,
@@ -13,7 +13,7 @@ import {
   menu,
   pencil,
 } from 'ionicons/icons';
-import { RouterLink } from '@angular/router';
+import {RouterLink} from '@angular/router';
 
 @Component({
   selector: 'app-menu',

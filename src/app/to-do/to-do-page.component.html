@@ -1,9 +1,8 @@
 <ion-header [translucent]="true">
-  <ion-toolbar>
+  <ion-toolbar appClickOutside [isActive]="showEdit" (clickOutside)="onClickOutside()">
     @if (!showEdit) {
       <ion-title>Item list</ion-title>
     }
-
     @if (showEdit) {
 
       <ion-checkbox id="select-checkbox-toolbar" labelPlacement="end" justify="end">
@@ -29,35 +28,48 @@
         </ion-button>
 
       </ion-buttons>
+
     }
+
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
 
-  <!--  <ion-header collapse="condense">-->
-  <!--    <ion-toolbar>-->
-  <!--      <ion-title size="large">To Do</ion-title>-->
-  <!--    </ion-toolbar>-->
-  <!--  </ion-header>-->
-
   <ion-list lines="none">
 
     <ion-reorder-group [disabled]="false" (ionItemReorder)="handleReorder($any($event))">
 
-      <ion-item>
+      @for (item of array; track item) {
 
-        <ion-checkbox labelPlacement="end" justify="start">
-          To do item
-        </ion-checkbox>
+        <ion-item>
 
-        <ion-reorder slot="end"></ion-reorder>
+          <ion-checkbox labelPlacement="end" justify="start">
+            {{ item }}
+          </ion-checkbox>
 
-      </ion-item>
+          <ion-reorder slot="end"></ion-reorder>
+
+        </ion-item>
+
+      } @empty {
+
+        <ion-item>
+
+          <ion-checkbox labelPlacement="end" justify="start">
+            To do item
+          </ion-checkbox>
+
+          <ion-reorder slot="end"></ion-reorder>
+
+        </ion-item>
+
+      }
 
     </ion-reorder-group>
 
   </ion-list>
+
   <app-menu [showEditMenu]="true" (editViewShow)="setShowEdit($event)" (createViewShow)="setCreateModalOpen($event)"/>
 
   <ion-modal [isOpen]="isModalOpen">
