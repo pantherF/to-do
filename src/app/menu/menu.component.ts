@@ -14,13 +14,14 @@ import {
   pencil,
 } from 'ionicons/icons';
 import {RouterLink} from '@angular/router';
+import {ClickOutsideDirective} from "../click-outside.directive";
 
 @Component({
   selector: 'app-menu',
   templateUrl: './menu.component.html',
   styleUrls: ['./menu.component.scss'],
   standalone: true,
-  imports: [IonFab, IonFabButton, IonFabList, IonIcon, RouterLink],
+  imports: [IonFab, IonFabButton, IonFabList, IonIcon, RouterLink, ClickOutsideDirective],
 })
 export class MenuComponent {
   showEdit: boolean = false;
@@ -46,5 +47,10 @@ export class MenuComponent {
   returnEditView() {
     this.showEdit = !this.showEdit;
     this.editViewShow.emit(this.showEdit);
+  }
+
+  onClickOutside() {
+      // add close menu logic
+    // console.log("menu close")
   }
 }

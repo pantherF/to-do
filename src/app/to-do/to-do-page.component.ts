@@ -28,6 +28,7 @@ import {MenuComponent} from '../menu/menu.component';
 import {FormsModule} from '@angular/forms';
 import {CreateItemComponent} from '../create-item/create-item.component';
 import {ClickOutsideDirective} from "../click-outside.directive";
+import {Item} from "../models/item";
 
 @Component({
   selector: 'app-to-do',
@@ -58,14 +59,12 @@ import {ClickOutsideDirective} from "../click-outside.directive";
 })
 export class ToDoPage {
   showEdit: boolean = false;
-  calledCloseEdit: number = 0;
-  array: any[] = [
-    'haha',
-    'hih',
-    'aklhfjklhklasjhdfjk',
-    'tetrahydrocannabinol'
+  array: Item[] = [
+    {title: "haha", description: "something", time: 34, done: false},
+    {title: "hih", description: "something", time: 34, done: false},
+    {title: "aklhfjklhklasjhdfjk", description: "something", time: 34, done: false},
+    {title: "tetrahydrocannabinol", description: "drugs", time: 34, done: false},
   ];
-
 
   constructor() {
     addIcons({
@@ -86,12 +85,10 @@ export class ToDoPage {
   setShowEdit($event: boolean) {
     if (this.showEdit && !$event) {
       this.showEdit = false;
-      this.calledCloseEdit = 0;
     } else if (!this.showEdit && $event) {
       this.showEdit = true;
     } else if (this.showEdit && $event) {
       this.showEdit = false;
-      this.calledCloseEdit = 0;
     } else if (!this.showEdit && !$event) {
       this.showEdit = true;
     }
@@ -101,13 +98,5 @@ export class ToDoPage {
 
   setCreateModalOpen($isOpen: boolean) {
     this.isModalOpen = $isOpen;
-  }
-
-  onClickOutside() {
-    this.calledCloseEdit += 1;
-    if (this.calledCloseEdit === 2) {
-      this.showEdit = false;
-      this.calledCloseEdit = 0;
-    }
   }
 }

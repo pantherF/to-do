@@ -1,0 +1,9 @@
+- [ ] Edit items logic
+  - [ ] Long press on item to open edit menu
+  - [ ] Delete, archive, edit
+- Might not be possible
+  - [ ] Open items on click for edit detail view
+  - [ ] Selecting checkbox marks as done
+- [ ] Add quick create with an input for the item title
+- [ ] Create item modal
+- [ ] Settings logic

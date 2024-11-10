@@ -1,5 +1,5 @@
 <ion-header [translucent]="true">
-  <ion-toolbar appClickOutside [isActive]="showEdit" (clickOutside)="onClickOutside()">
+  <ion-toolbar>
     @if (!showEdit) {
       <ion-title>Item list</ion-title>
     }
@@ -40,15 +40,28 @@
 
     <ion-reorder-group [disabled]="false" (ionItemReorder)="handleReorder($any($event))">
 
-      @for (item of array; track item) {
+      @for (item of array; track item.title) {
 
         <ion-item>
+          @if (showEdit) {
 
-          <ion-checkbox labelPlacement="end" justify="start">
-            {{ item }}
-          </ion-checkbox>
+            <!-- Edit view -->
 
-          <ion-reorder slot="end"></ion-reorder>
+            <ion-checkbox labelPlacement="end" justify="start">
+              {{ item.title }}
+            </ion-checkbox>
+
+            <ion-reorder slot="end"></ion-reorder>
+
+          } @else {
+
+            <!-- Normal view -->
+
+            <ion-checkbox labelPlacement="end" justify="start">
+              {{ item.title }}
+            </ion-checkbox>
+
+          }
 
         </ion-item>
 
@@ -56,11 +69,7 @@
 
         <ion-item>
 
-          <ion-checkbox labelPlacement="end" justify="start">
-            To do item
-          </ion-checkbox>
-
-          <ion-reorder slot="end"></ion-reorder>
+          No items
 
         </ion-item>
 
